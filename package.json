@@ -27,6 +27,17 @@
     "fastify": "^4.17.0",
     "pug": "^3.0.2",
     "i18next": "^22.4.9",
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "@fastify/secure-session": "^6.0.0",
+    "@fastify/flash": "^5.0.0",
+    "objection": "^3.0.1",
+    "knex": "^2.4.2",
+    "pg": "^8.9.0",
+    "sqlite3": "^5.1.4",
+    "bcrypt": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.4.3",
+    "faker": "^5.5.3"
   }
 }

@@ -1,0 +1,43 @@
+extends ../layouts/application.pug
+
+block content
+  .row.justify-content-center
+    .col-md-8
+      .card.shadow-sm
+        .card-body
+          h1.card-title.text-center= t('users.new.title')
+          
+          form(action="/users" method="post")
+            .form-group
+              label(for="data_firstName")= t('users.firstName')
+              input.form-control(
+                type="text"
+                name="data[firstName]"
+                id="data_firstName"
+                value=user.firstName
+              )
+            .form-group
+              label(for="data_lastName")= t('users.lastName')
+              input.form-control(
+                type="text"
+                name="data[lastName]"
+                id="data_lastName"
+                value=user.lastName
+              )
+            .form-group
+              label(for="data_email")= t('users.email')
+              input.form-control(
+                type="email"
+                name="data[email]"
+                id="data_email"
+                value=user.email
+              )
+            .form-group
+              label(for="data_password")= t('users.password')
+              input.form-control(
+                type="password"
+                name="data[password]"
+                id="data_password"
+              )
+            .form-group.mt-3
+              input.btn.btn-primary(type="submit" value=t('users.new.submit')) 
