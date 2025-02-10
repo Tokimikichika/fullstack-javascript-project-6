@@ -1,0 +1,32 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Task Manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tokimikichika/fullstack-javascript-project-6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tokimikichika/fullstack-javascript-project-6/issues"
+  },
+  "homepage": "https://github.com/Tokimikichika/fullstack-javascript-project-6#readme",
+  "dependencies": {
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/static": "^6.10.2",
+    "@fastify/view": "^8.0.0",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.17.0",
+    "pug": "^3.0.2",
+    "i18next": "^22.4.9",
+    "bootstrap": "^5.2.3"
+  }
+}
