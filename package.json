@@ -5,8 +5,10 @@
   "description": "Task Manager",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "jest",
+    "start": "node index.js",
+    "build": "npm ci",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,13 +25,13 @@
     "@fastify/formbody": "^7.4.0",
     "@fastify/static": "^6.10.2",
     "@fastify/view": "^8.0.0",
-    "dotenv": "^16.0.3",
-    "fastify": "^4.17.0",
-    "pug": "^3.0.2",
-    "i18next": "^22.4.9",
-    "bootstrap": "^5.2.3",
     "@fastify/secure-session": "^6.0.0",
     "@fastify/flash": "^5.0.0",
+    "fastify": "^4.17.0",
+    "pug": "^3.0.2",
+    "dotenv": "^16.0.3",
+    "i18next": "^22.4.9",
+    "bootstrap": "^5.2.3",
     "objection": "^3.0.1",
     "knex": "^2.4.2",
     "pg": "^8.9.0",
@@ -39,5 +41,8 @@
   "devDependencies": {
     "jest": "^29.4.3",
     "faker": "^5.5.3"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }
