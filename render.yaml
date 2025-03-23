@@ -9,3 +9,5 @@ services:
         value: 8000
       - key: SESSION_KEY
         generateValue: true
+      - key: SESSION_SALT
+        generateValue: true 
