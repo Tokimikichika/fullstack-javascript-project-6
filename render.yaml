@@ -8,6 +8,6 @@ services:
       - key: PORT
         value: 8000
       - key: SESSION_KEY
-        generateValue: true
+        value: "abcdefghijklmnopqrstuvwxyz123456"
       - key: SESSION_SALT
-        generateValue: true 
+        value: "123456789abcdefghijklmnopqrstuv" 
