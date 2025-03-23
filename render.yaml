@@ -1,9 +1,11 @@
 services:
   - type: web
-    name: your-app-name
-    env: python # или node, ruby и т.д.
-    buildCommand: pip install -r requirements.txt # или npm install
-    startCommand: python app.py # или npm start
+    name: fullstack-javascript-project-6
+    env: node
+    buildCommand: npm ci
+    startCommand: npm start
     envVars:
       - key: PORT
-        value: 8000 
+        value: 8000
+      - key: SESSION_KEY
+        generateValue: true
