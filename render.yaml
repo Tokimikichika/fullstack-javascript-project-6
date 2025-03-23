@@ -8,4 +8,4 @@ services:
       - key: PORT
         value: 8000
       - key: SESSION_KEY
-        value: "c29tZXN1cGVyc2VjcmV0a2V5dGhhdGlzdmVyeWxvbmc="
+        value: "VGhpc0lzQVZlcnlTZWN1cmVLZXlGb3JTZXNzaW9uMTIzNDU2Nzg5"

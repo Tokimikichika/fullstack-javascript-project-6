@@ -97,6 +97,9 @@ const registerPlugins = async (app) => {
   // await app.register(fastifyErrorPage);
   await app.register(fastifyReverseRoutes);
   await app.register(fastifyFormbody, { parser: qs.parse });
+  if (!process.env.SESSION_KEY) {
+    throw new Error('SESSION_KEY environment variable is not set');
+  }
   await app.register(fastifySecureSession, {
     key: Buffer.from(process.env.SESSION_KEY, 'base64'),
     cookie: {
