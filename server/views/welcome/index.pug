@@ -1,0 +1,9 @@
+extends ../layouts/application.pug
+
+block content
+  .card
+    .card-body.p-5.bg-light
+      .display-4= t('views.welcome.title')
+      p.lead.m-1= t('views.welcome.description')
+      hr
+      a.btn.btn-primary.btn-lg(href=route('tasks'))= t('views.welcome.start')

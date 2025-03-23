@@ -1,0 +1,29 @@
+extends ../layouts/application.pug
+
+block content
+  table.table.table-striped.border
+    thead
+      tr
+        th= t('views.users.id')
+        th= t('views.users.fullName')
+        th= t('views.users.email')
+        th= t('views.users.createdAt')
+        if isAuthenticated()
+          th= t('views.users.actions')
+    tbody
+      each user in users
+        tr(class=(getUserId() === user.id && 'fw-semibold'))
+          td= user.id
+          td= user.fullName
+          td= user.email
+          td= formatDate(user.createdAt)
+          if isAuthenticated()
+            td
+              .d-flex.flex-wrap
+                a.btn.btn-primary.me-1(href=route('editUser', { id: user.id }))= t('views.users.updateAction')
+                +formFor()(action=route('oneUser', { id: user.id }) method='post')
+                  input(name='_method' type='hidden' value='delete')
+                  input.btn.btn-danger(type='submit' value=t('views.users.deleteAction'))
+
+block header
+  = t('views.users.users')

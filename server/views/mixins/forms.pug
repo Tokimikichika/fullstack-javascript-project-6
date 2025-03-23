@@ -1,0 +1,73 @@
+- const getInputName = (property) => `data[${property}]`
+- const getInputId = (property) => `data_${property}`
+
+mixin formFor(entity = null)
+  form&attributes(attributes)
+    block
+
+mixin input(entity, propertyName, label, errors = {}, attrs = {autofocus: false})
+  - propertyErrors = _.get(errors, propertyName)
+  - classLine = 'form-control' + (_.isEmpty(propertyErrors) ? '' : ' is-invalid')
+  - inputId = getInputId(propertyName)
+  .mb-3.form-floating(class=(errors[propertyName] && 'has-danger'))
+    input(
+      id= inputId
+      name=getInputName(propertyName)
+      class=classLine
+      value=_.get(entity, propertyName, '')
+      placeholder=label || propertyName
+      autofocus= attrs.autofocus
+    )&attributes(attributes)
+    label(
+      for= inputId
+    )= label || propertyName
+    if !_.isEmpty(propertyErrors)
+      .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')
+
+mixin textarea(entity, propertyName, label, errors = {}, attrs = {maxlength: false, autofocus: false})
+  - propertyErrors = _.get(errors, propertyName)
+  - classLine = 'form-control' + (_.isEmpty(propertyErrors) ? '' : ' is-invalid')
+  - inputId = getInputId(propertyName)
+  .mb-3(class=(errors[propertyName] && 'has-danger'))
+    label(
+      for= inputId
+    )= label || propertyName
+    textarea(
+      id= inputId
+      name=getInputName(propertyName)
+      class=classLine
+      autofocus= attrs.autofocus
+      maxlength= attrs.maxlength
+    )&attributes(attributes)= _.get(entity, propertyName, '')
+    if !_.isEmpty(propertyErrors)
+      .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')
+
+mixin select(entity, propertyName, label, errors = {}, attrs = {multiple: false})
+  - propertyErrors = _.get(errors, propertyName)
+  - classLine = 'form-select' + (_.isEmpty(propertyErrors) ? '' : ' is-invalid')
+  - inputId = getInputId(propertyName)
+  .mb-3(class=(errors[propertyName] && 'has-danger'))
+    label(
+      for= inputId
+    )= label || propertyName
+    select(
+      id= inputId
+      name=getInputName(propertyName)
+      class=classLine
+      value=_.get(entity, propertyName, '')
+      multiple= attrs.multiple
+    )&attributes(attributes)
+      block
+    if !_.isEmpty(propertyErrors)
+      .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')
+
+mixin submit(form = null)
+  input(class='btn btn-primary' type='submit')&attributes(attributes)
+
+mixin back(text, path, marginCls = 'mx-3')
+  a.btn.btn-secondary(class=marginCls href=path)&attributes(attributes)= text
+
+mixin buttonTo(action, method)
+  form(action=action, method="post")
+    input(name="_method" type="hidden" value=method)
+    input(type='submit')&attributes(attributes)

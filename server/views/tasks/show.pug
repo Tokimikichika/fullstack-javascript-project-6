@@ -1,0 +1,29 @@
+extends ../layouts/application.pug
+
+block header
+  = task.name
+
+block content
+  .row.mt-5.p-5.shadow.bg-white
+    .col-12.col-md-8.order-2.order-md-1
+      .lead.fw-normal.mb-4.fs-6(style='white-space: pre-line')= task.description
+    .col-12.col-md-4.border-start.px-3.order-1.order-md-2.mb-3.mb-md-0
+      .mb-2
+        .me-1.badge.bg-danger.text-white= task.status.name
+        each label in task.labels
+          .me-1.badge.bg-info.text-white= label.name
+      .d-flex.flex-wrap.mb-3
+        span.text-muted.me-2 Автор
+        span= task.creator.fullName
+      .d-flex.flex-wrap.mb-3
+        span.text-muted.me-2 Исполнитель
+        span= (task.executor || {}).fullName
+      .d-flex.flex-wrap.mb-3
+        span.text-muted.me-2 Дата создания
+        span= formatDate(task.createdAt)
+      .d-flex.flex-wrap
+        a.btn.btn-primary.me-1(href=route('editTask', { id: task.id }))= t('views.tasks.updateAction')
+        +formFor()(action=route('oneTask', { id: task.id }) method='post')
+          input(name='_method' type='hidden' value='delete')
+          input.btn.btn-danger(type='submit' value=t('views.tasks.deleteAction'))
+          +back(t('views.tasks.show.back'), route('tasks'), 'ms-1')

@@ -1,17 +1,9 @@
 services:
   - type: web
-    name: task-manager
-    env: node
-    buildCommand: npm ci
-    startCommand: npm start
+    name: your-app-name
+    env: python # или node, ruby и т.д.
+    buildCommand: pip install -r requirements.txt # или npm install
+    startCommand: python app.py # или npm start
     envVars:
-      - key: NODE_ENV
-        value: production
-      - key: DATABASE_URL
-        fromDatabase:
-          name: task-manager-db
-          property: connectionString
-
-databases:
-  - name: task-manager-db
-    plan: free 
+      - key: PORT
+        value: 8000 

@@ -1,0 +1,63 @@
+extends ../layouts/application.pug
+
+block content
+  a.btn.btn-primary(href='/tasks/new')= t('views.tasks.createAction')
+  .card.shadow-sm.my-4
+    .card-body.p-4
+      +formFor()(action=route('tasks') method='get')
+        .row
+          .col-12.col-md
+            .input-group.mb-3
+              label.input-group-text(for='data_status')= t('views.tasks.status')
+              select.form-select(id="data_status" name="status")
+                option(value='')
+                each status in statuses
+                  option(value=status.id selected=(status.id === Number(form.status)))= status.name
+          .col-12.col-md
+            .input-group.mb-3
+              label.input-group-text(for='data_executor')= t('views.tasks.executor')
+              select.form-select(id="data_executor" name="executor")
+                option(value='')
+                each user in users
+                  option(value=user.id selected=(user.id === Number(form.executor)))= user.fullName
+          .col-12.col-md
+            .input-group.mb-3
+              label.input-group-text(for='data_label')= t('views.tasks.label')
+              select.form-select(id="data_label" name="label")
+                option(value='')
+                each label in labels
+                  option(value=label.id selected=(label.id === Number(form.label)))= label.name
+        .mb-3.form-check
+          input.form-check-input(id="data_isCreatorUser" type="checkbox" name="isCreatorUser" checked=!!form.isCreatorUser)
+          label.form-check-label(for="data_isCreatorUser")= t('views.tasks.onlyMyTasks')
+        input.btn.btn-primary(type='submit' value=t('views.tasks.showAction'))
+  .table-responsive
+    table.table.table-striped.border
+      thead
+        tr
+          th= t('views.tasks.id')
+          th= t('views.tasks.name')
+          th= t('views.tasks.status')
+          th= t('views.tasks.creator')
+          th= t('views.tasks.executor')
+          th= t('views.tasks.createdAt')
+          th
+      tbody
+        each task in tasks
+          tr
+            td= task.id
+            td
+              a(href=route('oneTask', { id: task.id }))= task.name
+            td= task.status.name
+            td= task.creator.fullName
+            td= (task.executor || {}).fullName
+            td= formatDate(task.createdAt)
+            td
+              .d-flex.flex-wrap
+                a.btn.btn-primary.me-1(href=route('editTask', { id: task.id }))= t('views.tasks.updateAction')
+                +formFor()(action=route('oneTask', { id: task.id }) method='post')
+                  input(name='_method' type='hidden' value='delete')
+                  input.btn.btn-danger(type='submit' value=t('views.tasks.deleteAction'))
+
+block header
+  = t('views.tasks.tasks')
