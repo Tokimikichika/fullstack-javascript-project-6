@@ -98,8 +98,7 @@ const registerPlugins = async (app) => {
   await app.register(fastifyReverseRoutes);
   await app.register(fastifyFormbody, { parser: qs.parse });
   await app.register(fastifySecureSession, {
-    key: process.env.SESSION_KEY,
-    salt: process.env.SESSION_SALT,
+    secret: process.env.SESSION_SECRET,
     cookie: {
       path: '/',
     },
