@@ -7,5 +7,5 @@ services:
     envVars:
       - key: PORT
         value: 8000
-      - key: SESSION_SECRET
-        value: "this-is-a-very-long-and-secure-session-secret-key-12345" 
+      - key: SESSION_KEY
+        value: "c29tZXN1cGVyc2VjcmV0a2V5dGhhdGlzdmVyeWxvbmc="
