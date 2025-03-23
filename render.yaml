@@ -1,11 +1,9 @@
 services:
   - type: web
-    name: fullstack-javascript-project-6
-    env: node
-    buildCommand: npm ci
-    startCommand: npm start
+    name: your-app-name
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
     envVars:
       - key: PORT
         value: 8000
-      - key: SESSION_KEY
-        value: "VGhpc0lzQVZlcnlTZWN1cmVLZXlGb3JTZXNzaW9uMTIzNDU2Nzg5"
