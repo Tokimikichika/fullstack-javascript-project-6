@@ -21,4 +21,4 @@ make local-start
 ```
 
 
-[Демонстрация](https://fullstack-javascript-project-6.onrender.com)
+[Демонстрация](https://fullstack-javascript-project-6-xmed.onrender.com/)
